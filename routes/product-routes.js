@@ -9,4 +9,8 @@ module.exports = app => {
     const product = req.body;
     Products.cadastrarProduto(product, res);
   })
+
+  app.get("/produtos", (req, res) => {
+    Products.listarProduto(res);
+  })
 }
