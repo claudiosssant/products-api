@@ -41,6 +41,17 @@ class Produtos {
       }
     })
   }
+
+  deletarProduto(id, res) {
+    const sql = `DELETE FROM Produtos WHERE id = ${id}`
+    connection.query(sql, (erro) => {
+      if(erro) {
+        res.status(400).json(erro)
+      }else{
+        res.status(200).json({"message": "Produto apagado!"})
+      }
+    })
+  }
 }
 
 module.exports = new Produtos

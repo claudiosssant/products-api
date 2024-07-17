@@ -19,4 +19,10 @@ module.exports = app => {
     const dados = req.body
     Products.editarProduto(id, dados, res)
   })
+
+  app.delete("/produtos/:id", (req, res) => {
+    const id = parseInt(req.params.id)
+    Products.deletarProduto(id, res)
+  })
+
 }
