@@ -29,6 +29,18 @@ class Produtos {
       }
     })
   }
+
+  editarProduto(id, dados, res) {
+    const sql = `UPDATE Produtos SET ? WHERE id = ${id}`
+
+    connection.query(sql, [dados, id], (erro, resultados) => {
+      if(erro) {
+        res.status(400).json(erro)
+      }else{
+        res.status(200).json({...dados, id})
+      }
+    })
+  }
 }
 
 module.exports = new Produtos

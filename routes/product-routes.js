@@ -13,4 +13,10 @@ module.exports = app => {
   app.get("/produtos", (req, res) => {
     Products.listarProduto(res);
   })
+
+  app.put("/produtos/:id", (req, res) => {
+    const id = parseInt(req.params.id)
+    const dados = req.body
+    Products.editarProduto(id, dados, res)
+  })
 }
