@@ -39,7 +39,7 @@ class Produtos {
       if (erro) {
         res.status(400).json(erro);
       } else {
-        res.status(200).json({ ...dados, id });
+        res.status(200).json({ message: `O produto ${id} foi atualizado!` });
       }
     });
   }
