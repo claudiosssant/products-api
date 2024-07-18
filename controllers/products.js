@@ -1,13 +1,25 @@
 const connection = require("../db/connection");
 
+function getFormattedDate() {
+  const date = new Date();
+
+  // Obter os componentes da data
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Meses começam de 0 a 11
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const seconds = String(date.getSeconds()).padStart(2, "0");
+
+  // Montar a string no formato YYYY-MM-DD HH:MM:SS
+  const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+  return formattedDate;
+}
 class Produtos {
   cadastrarProduto(req, res) {
-    const dataHoraAtual = new Date()
-      .toISOString()
-      .slice(0, 19)
-      .replace("T", " ");
 
-    const produtoCadastrado = { ...req, data: dataHoraAtual };
+    const produtoCadastrado = { ...req, date: getFormattedDate() };
 
     const sql = "INSERT INTO Produtos SET ?";
 
